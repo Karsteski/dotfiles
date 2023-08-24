@@ -1,0 +1,8 @@
+[Desktop Entry]
+	Type=Application
+	Version=3.116.8
+	Name=tutanota-desktop
+	Comment=tutanota-desktop startup script
+	Exec=/home/karsteski/programs/tutanota-desktop-linux.AppImage -a
+	StartupNotify=false
+	Terminal=false

@@ -1,0 +1,191 @@
+/* Colours */
+@define-color main-dark-purple          #1a1a26;
+@define-color highlight-light-purple    #54387a;
+@define-color text-white                #FFFFFF;
+@define-color clock-light-purple        #CCC3D7;
+@define-color cpu-gold                  #7A6038;
+@define-color audio-blue                #38627A;
+@define-color memory-pink               #C86AB8;
+
+@define-color temperature-green         #4C85E6;
+
+@define-color activated-green           #8ABD70;
+@define-color deactivated-pink          pink;
+/* ------------------------------------------------------------------------------- */
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Monocraft Nerd Font, Roboto, Helvetica, Arial, sans-serif;
+    font-size: .9rem;
+    border-radius: 1.5em; transition-property: background-color;
+    transition-duration:0.5s;
+}
+window#waybar {
+    background-color: transparent;
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.modules-left, .modules-center, .modules-right{
+    background-color: @main-dark-purple;
+    padding: 0px 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+/* Adds spacing around the top of waybar */
+window > box {
+    margin: .3rem;
+    margin-bottom: 0;
+}
+
+/* =============================================================================== */
+@keyframes blink_red {
+    to {
+        color: @red;
+    }
+}
+
+.warning, .critical, .urgent {
+    animation-name: blink_red;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+/* ------------------------------------------------------------------------------- */
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+}
+
+#mode {
+    background-color: #00FF00;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#custom-weather,
+#custom-dunst {
+    padding-left: .6rem;
+    padding-right: .6rem;
+    color: @text-white;
+}
+
+#window {
+    padding-right: .6rem;
+}
+
+#clock {
+    color: @clock-light-purple;
+}
+
+#battery {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink; animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+#cpu {
+    color: @cpu-gold;
+}
+#memory {
+    color: @memory-pink;
+}
+
+#disk {
+    /* background-color: #bbccdd; */
+}
+
+#network {
+    /* background-color: #bbccdd; */
+}
+
+#network.disconnected {
+    /* background-color: #ff0000; */
+}
+
+#pulseaudio {
+    /* background-color: #bbccdd; */
+    color: @audio-blue;
+}
+
+#pulseaudio.muted {
+    background-color: #ff0000;
+    color: #2a5c45;
+}
+
+#temperature {
+    color: @temperature-green;
+}
+
+#temperature.critical {
+     color: @temperature-red;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    color: @deactivated-pink;
+}
+
+#idle_inhibitor.activated {
+    color: @activated-green;
+}
