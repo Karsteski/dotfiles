@@ -29,7 +29,7 @@
         "tooltip-format": "{app}: {title}"
     },
     "custom/dunst": {
-        // "exec": "~/scripts/toggle-dunst.sh",
+        "exec": "~/scripts/toggle-dunst.sh",
         "on-click": "dunstctl set-paused toggle",
         "restart-interval": 1,
         "tooltip": false
