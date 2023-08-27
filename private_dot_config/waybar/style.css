@@ -17,7 +17,7 @@
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: Monocraft Nerd Font, Roboto, Helvetica, Arial, sans-serif;
     font-size: .9rem;
-    border-radius: 1.5em; transition-property: background-color;
+    border-radius: 0.3em; transition-property: background-color;
     transition-duration:0.5s;
 }
 window#waybar {
