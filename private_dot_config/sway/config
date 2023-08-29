@@ -65,7 +65,8 @@ gaps inner 10
 for_window [class="vlc"] floating enable
 
 # Font
-font JetBrainsMonoNerdFont-Bold 12
+# font JetBrainsMonoNerdFont-Bold 12
+font Monocraft Nerd Font 12
 
 # Prevent window focus from changing based on mouse hover
 focus_follows_mouse no
@@ -191,6 +192,7 @@ bindsym $mod+space layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+Shift+f fullscreen
+
 
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
