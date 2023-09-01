@@ -62,14 +62,6 @@ inputbar {
     position:                       center;
 }
 
-/*
-case-indicator {
-    background-color:               @BG;
-    text-color:                     @FG;
-    spacing:                        0;
-}
-*/
-
 listview {
     background-color:               @BG;
     columns:                        1;
