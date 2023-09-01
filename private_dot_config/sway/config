@@ -303,6 +303,7 @@ for_window [con_mark="Browser"] {
     inhibit_idle fullscreen
 }
 
+
 # Make VLC better lol
 for_window [class="vlc"] {
     inhibit_idle fullscreen
