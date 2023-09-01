@@ -39,12 +39,13 @@ set $browser firefox
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $rofi_cmd rofi \
-        -terminal '$term'
+    -terminal '$term'
 # Shows a list of the applications with desktop files
 set $menu $rofi_cmd -show drun
 
 # Power menu. Requires rofi-power-menu script be in ~/.local/bin.
-set $power_menu $rofi_cmd -show power-menu -modi power-menu:rofi-power-menu
+set $power_menu $rofi_cmd -show power-menu -modi \
+    "power-menu:rofi-power-menu --choices=shutdown/reboot/logout"
 
 # File manager
 set $file_manager nemo 
