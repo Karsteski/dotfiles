@@ -43,6 +43,9 @@ set $rofi_cmd rofi \
 # Shows a list of the applications with desktop files
 set $menu $rofi_cmd -show drun
 
+# Power menu. Requires rofi-power-menu script be in ~/.local/bin.
+set $power_menu $rofi_cmd -show power-menu -modi power-menu:rofi-power-menu
+
 # File manager
 set $file_manager nemo 
 #-----------------------------------------------------------------------------------#
@@ -79,7 +82,6 @@ exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 000000'
-
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -102,6 +104,9 @@ bindsym $mod+q kill
 # Start your launcher
 bindsym $mod+d exec $menu
 
+# Start power menu
+bindsym $mod+shift+e exec $power_menu
+
 # Start file manager
 bindsym $mod+f exec $file_manager
 
@@ -119,10 +124,10 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m \
-'You pressed the exit shortcut. \
-Do you really want to exit sway? This will end your Wayland session.' \
--B 'Yes, exit sway' 'swaymsg exit'
+# bindsym $mod+Shift+e exec swaynag -t warning -m \
+# 'You pressed the exit shortcut. \
+# Do you really want to exit sway? This will end your Wayland session.' \
+# -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
 # Move your focus around
