@@ -1,0 +1,3 @@
+[MAIN]
+disable=invalid-name, missing-module-docstring, missing-function-docstring,
+    unspecified-encoding

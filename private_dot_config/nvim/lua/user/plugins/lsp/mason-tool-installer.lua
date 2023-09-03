@@ -22,7 +22,7 @@ mason_tool_installer.setup({
 
 		-- Linters
 		"eslint_d",
-		"flake8",
+        "pylint",
 
 		-- Debuggers
 		"codelldb",

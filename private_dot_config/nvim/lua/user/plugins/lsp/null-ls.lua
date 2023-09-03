@@ -10,7 +10,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.markdownlint,
 
 		null_ls.builtins.diagnostics.eslint_d,
-		null_ls.builtins.diagnostics.flake8,
+		null_ls.builtins.diagnostics.pylint,
 
 		null_ls.builtins.diagnostics.markdownlint.with({
 			extra_args = { "--disable MD013" }, -- Disable line_length checking

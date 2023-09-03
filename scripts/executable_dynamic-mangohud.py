@@ -1,13 +1,17 @@
 #!/bin/python
-# flake8: noqa: E221
+# flake8: noq
 
-import os, argparse
+import os
+import sys
+import argparse
 from pathlib import Path
-from enum import IntEnum 
+from enum import IntEnum
 
 MANGOHUD_CONFIG_PATH = str(Path.home()) + "/.config/MangoHud/MangoHud.conf"
-
-class MangoHudPreset(IntEnum):  
+class MangoHudPreset(IntEnum):
+    """
+    Definitions for presets
+    """
     Disable                 = 0
     OnlyFps                 = 1
     ProcessorInfo           = 2
@@ -21,21 +25,21 @@ def parseArguments() -> MangoHudPreset:
     Processor Info                  = 2
     Detailed Statistics             = 3
     """
-    
-    parser = argparse.ArgumentParser(description=description, 
-        formatter_class=argparse.RawTextHelpFormatter)
 
     # RawTextHelpFormatter indicates text is already wrapped and formatted
-    parser.add_argument("preset", type=int, help="Select the MangoHud preset")
-    
-    arguments = parser.parse_args()
-    preset : int = arguments.preset
+    parser = argparse.ArgumentParser(description=description,
+        formatter_class=argparse.RawTextHelpFormatter)
 
-    if preset not in [0, 1, 2, 3]:
+    parser.add_argument("preset", type=int, help="Select the MangoHud preset")
+
+    arguments = parser.parse_args()
+    arg: int = arguments.preset
+
+    if arg not in [0, 1, 2, 3]:
         print("Invalid argument, please check help to see how to use this script")
-        exit()
-    
-    return MangoHudPreset(preset)
+        sys.exit()
+
+    return MangoHudPreset(arg)
 
 
 def getCommonSettings() ->str:
@@ -103,7 +107,7 @@ fsr
 frametime
 battery
     """
-    
+
     match level_of_detail:
         case MangoHudPreset.Disable:
             return disable
@@ -122,7 +126,7 @@ def writeConfig(config_path: str, config: str) -> bool:
                 file.write(config)
 
             return True
-        except Exception as error:
+        except IOError as error:
             print("An exception occurred: ", error)
             return False
     else:
@@ -142,5 +146,5 @@ if __name__ == "__main__":
         # Echo the preset so that a program like Waybar knows which preset was selected
         print(int(selected_preset))
     else:
-        # Error occurred 
+        # Error occurred
         print(-1)
