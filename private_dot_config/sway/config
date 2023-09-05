@@ -88,7 +88,7 @@ exec swayidle timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output
 
 ### MangoHud toggles
 
-# Processor Info Horizontal
+# Processor Info
 bindsym Shift+F10 exec dynamic-mangohud.py 2 
 # Detailed HUD
 bindsym Shift+F11 exec dynamic-mangohud.py 3

@@ -93,10 +93,19 @@ button {
 #idle_inhibitor,
 #scratchpad,
 #custom-weather,
-#custom-dunst {
+#custom-dunst,
+#custom-vrr_toggle {
     padding-left: .6rem;
     padding-right: .6rem;
     color: @text-white;
+}
+
+#custom-vrr_toggle.enabled {
+    color: @activated-green;
+}
+
+#custom-vrr_toggle.disabled {
+    color: @deactivated-pink;
 }
 
 #window {

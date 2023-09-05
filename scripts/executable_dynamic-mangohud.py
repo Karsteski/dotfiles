@@ -1,5 +1,4 @@
 #!/bin/python
-# flake8: noq
 
 import os
 import sys

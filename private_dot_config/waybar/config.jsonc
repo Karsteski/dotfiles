@@ -7,8 +7,9 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
     "modules-center": ["custom/weather","clock"],
-    "modules-right": ["custom/virtual_keyboard", "custom/dunst",
-        "idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "battery#bat2", "tray"],
+    "modules-right": ["custom/vrr_toggle", "custom/dunst",
+        "idle_inhibitor", "pulseaudio", "cpu", "memory",
+        "temperature", "battery", "battery#bat2", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "format": "{name}: {icon}",
@@ -29,16 +30,26 @@
         "tooltip-format": "{app}: {title}"
     },
     "custom/dunst": {
-        "exec": "~/scripts/toggle-dunst.sh",
+        "exec": "toggle-dunst.sh",
         "on-click": "dunstctl set-paused toggle",
         "restart-interval": 1,
         "tooltip": false
+    },
+    "custom/vrr_toggle" : {
+        "format": "{}",
+        "exec": "vrr-toggle.py",
+        "exec-on-event": "false",
+        "on-click": "vrr-toggle.py -t 1; pkill -SIGRTMIN+10 waybar",
+        "on-click-right": "vrr-toggle.py -t 0; pkill -SIGRTMIN+10 waybar",
+        "interval": "once",
+        "signal": 10,
+        "return-type": "json"
     },
         "custom/weather": {
         "format": "{}",
         "tooltip": true,
         "interval": 1800,
-        "exec": "~/scripts/waybar-weather.py",
+        "exec": "waybar-weather.py",
         "return-type": "json"
     },
     "idle_inhibitor": {
@@ -50,7 +61,6 @@
         "tooltip": false
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
