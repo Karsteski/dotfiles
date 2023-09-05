@@ -37,9 +37,9 @@
     },
     "custom/vrr_toggle" : {
         "format": "{}",
-        "exec": "vrr-toggle.py",
+        "exec": "vrr-toggle.py -d DP-1",
         "exec-on-event": "false",
-        "on-click": "vrr-toggle.py -t; pkill -SIGRTMIN+10 waybar",
+        "on-click": "vrr-toggle.py -t -d DP-1; pkill -SIGRTMIN+10 waybar",
         "interval": "once",
         "signal": 10,
         "return-type": "json"

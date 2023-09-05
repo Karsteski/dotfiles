@@ -178,8 +178,6 @@ ON_ATTACH = function(client, bufnr)
 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, options)
 	-- keymap("x", "<F4>", vim.lsp.buf.range_code_action, options)
 
-	-- Show diagnostics in a floating window
-
 	-- Move to the previous diagnostic
 	keymap("n", "[d", vim.diagnostic.goto_prev, options)
 

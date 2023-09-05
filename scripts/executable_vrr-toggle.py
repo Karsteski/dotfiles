@@ -1,23 +1,26 @@
 #!/bin/python
+"""
+    This script toggles the Adaptive Sync (Variable Refresh Rate) setting
+    via the Sway compositor. 
+"""
 
 import os
-import sys
 import argparse
 import subprocess
 import json
+from typing import Any
 
 
-def parseArgument() -> bool:
+def parseArguments(valid_displays: list[str]) -> tuple[str, bool]:
     """
-    Get the argument (or lack thereof) passed by the user
+    Get the arguments (or lack thereof) passed by the user
+    Returns the name of the display and whether to toggle it
     """
-
-    description = "Toggle DP-1's Variable Refresh Rate(VRR)"
 
     # RawTextHelpFormatter indicates text is already wrapped and formatted
     parser = argparse.ArgumentParser(
         prog="VRR-Toggle",
-        description=description,
+        description="Toggle a display's Variable Refresh Rate(VRR) setting via the Sway WM",
         formatter_class=argparse.RawTextHelpFormatter,
     )
 
@@ -29,22 +32,55 @@ def parseArgument() -> bool:
         help="Toggle Variable Refresh Rate",
     )
 
+    parser.add_argument(
+        "-d",
+        "--display",
+        required=True,
+        choices=valid_displays,
+        help="Select the display to use",
+    )
+
     arguments = parser.parse_args()
-    arg: bool = arguments.toggle
+    toggle: bool = arguments.toggle
+    display: str = arguments.display
 
-    return arg
+    return (display, toggle)
 
 
-def getVRRStatus() -> bool:
+def getSwayMsgOutputJSON() -> dict[Any, Any]:
     """
-    Get the VRR Status of DP-1 via $ swaymsg ...
+    Retrieve the output of '$ swaymsg -r -t get_outputs' in a dict converted from JSON
     """
     output = subprocess.check_output("swaymsg -r -t get_outputs", shell=True)
     output_string = output.decode(encoding="utf-8")
-    json_output = json.loads(output_string)
+    json_output: Any = json.loads(output_string)
+
+    return json_output
+
+
+def getOutputNames(sway_msg_output: dict[Any, Any]) -> list[str]:
+    """
+    Get the names of the display outputs via Sway WM
+    Takes a dict of converted JSON data
+    """
+
+    output_names = []
+    for entry in sway_msg_output:
+        output_names.append(entry["name"])
+
+    return output_names
+
+
+def VRRStatus(output_display: str) -> bool:
+    """
+    Get the VRR Status of DP-1 via $ swaymsg ...
+    """
+    sway_outputs_JSON = subprocess.check_output("swaymsg -r -t get_outputs", shell=True)
+    decoded_JSON = sway_outputs_JSON.decode(encoding="utf-8")
+    json_output = json.loads(decoded_JSON)
 
     for entry in json_output:
-        if entry["name"] == "DP-1":
+        if entry["name"] == output_display:
             status: str = entry["adaptive_sync_status"]
             return status == "enabled"
 
@@ -52,39 +88,51 @@ def getVRRStatus() -> bool:
     return VRR_status
 
 
-def toggleVRR(flag: bool) -> None:
+def toggleVRR(output_display: str, flag: bool) -> None:
     """
     Toggle Variable Refresh Rate via $ swaymsg ...
     """
     if flag:
-        os.system("swaymsg 'output DP-1 adaptive_sync on'")
+        os.system(f"swaymsg 'output {output_display} adaptive_sync on'")
     else:
-        os.system("swaymsg 'output DP-1 adaptive_sync off'")
+        os.system(f"swaymsg 'output {output_display} adaptive_sync off'")
 
 
-def printJSON(using_VRR: bool) -> None:
+def printJSON(output_display: str, using_VRR: bool) -> None:
     """
-    For use by programs for Sway such as Waybar
+    Print JSON info for Waybar to use
     """
 
+    # ensure_ascii flag will print in UTF-8 rather than ASCII
     if using_VRR:
-        print('{"text": "󰍹", "tooltip": "VRR Enabled", "class": "enabled"}')
+        enabled_info = {
+            "text": "󰍹",
+            "tooltip": f"VRR Enabled: {output_display}",
+            "class": "enabled",
+        }
+        json_data_enabled = json.dumps(enabled_info, ensure_ascii=False)
+        print(json_data_enabled)
     else:
-        print('{"text": "󰶐", "tooltip": "VRR Disabled", "class": "disabled"}')
+        disabled_info = {
+            "text": "󰶐",
+            "tooltip": f"VRR Disabled: {output_display}",
+            "class": "disabled",
+        }
+        json_data_disabled = json.dumps(disabled_info, ensure_ascii=False)
+        print(json_data_disabled)
 
 
 if __name__ == "__main__":
-    arg: bool = parseArgument()
+    sway_msg_output = getSwayMsgOutputJSON()
+    valid_displays = getOutputNames(sway_msg_output)
 
-    # If no argument provided, just print the last setting used
-    if arg is False:
-        printJSON(getVRRStatus())
-        sys.exit()
-    else:
-        current_setting = getVRRStatus()
+    display_name, toggle = parseArguments(valid_displays)
+    status_VRR = VRRStatus(display_name)
 
+    # Only toggle if requested, otherwise just print the current setting for use by Waybar
+    if toggle:
+        current_setting = VRRStatus(display_name)
         new_setting = not current_setting
-        toggleVRR(new_setting)
+        toggleVRR(display_name, new_setting)
 
-    # Print JSON info for Waybar to use
-    printJSON(arg)
+    printJSON(display_name, status_VRR)

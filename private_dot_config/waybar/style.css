@@ -74,7 +74,9 @@ button {
 }
 
 #mode {
-    background-color: #00FF00;
+    padding-left: .6rem;
+    padding-right: .6rem;
+    color: @highlight-light-purple;
 }
 
 #clock,
@@ -89,7 +91,6 @@ button {
 #wireplumber,
 #custom-media,
 #tray,
-#mode,
 #idle_inhibitor,
 #scratchpad,
 #custom-weather,
