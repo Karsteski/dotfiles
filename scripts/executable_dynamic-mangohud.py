@@ -34,7 +34,7 @@ def parseArguments() -> MangoHudPreset:
     arguments = parser.parse_args()
     arg: int = arguments.preset
 
-    if arg not in [0, 1, 2, 3]:
+    if arg not in [enum.value for enum in MangoHudPreset]:
         print("Invalid argument, please check help to see how to use this script")
         sys.exit()
 
