@@ -15,12 +15,19 @@ def parseArgument() -> bool:
     description = "Toggle DP-1's Variable Refresh Rate(VRR)"
 
     # RawTextHelpFormatter indicates text is already wrapped and formatted
-    parser = argparse.ArgumentParser(prog="VRR-Toggle",
+    parser = argparse.ArgumentParser(
+        prog="VRR-Toggle",
         description=description,
-        formatter_class=argparse.RawTextHelpFormatter)
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
 
-    parser.add_argument("-t", "--toggle", action="store_true", required=False,
-        help="Toggle Variable Refresh Rate")
+    parser.add_argument(
+        "-t",
+        "--toggle",
+        action="store_true",
+        required=False,
+        help="Toggle Variable Refresh Rate",
+    )
 
     arguments = parser.parse_args()
     arg: bool = arguments.toggle
@@ -54,6 +61,7 @@ def toggleVRR(flag: bool) -> None:
     else:
         os.system("swaymsg 'output DP-1 adaptive_sync off'")
 
+
 def printJSON(using_VRR: bool) -> None:
     """
     For use by programs for Sway such as Waybar
@@ -66,7 +74,7 @@ def printJSON(using_VRR: bool) -> None:
 
 
 if __name__ == "__main__":
-    arg: bool =  parseArgument()
+    arg: bool = parseArgument()
 
     # If no argument provided, just print the last setting used
     if arg is False:
@@ -78,5 +86,5 @@ if __name__ == "__main__":
         new_setting = not current_setting
         toggleVRR(new_setting)
 
-    # Echo the flag so that a program like Waybar knows which option was selected
+    # Print JSON info for Waybar to use
     printJSON(arg)
