@@ -39,8 +39,7 @@
         "format": "{}",
         "exec": "vrr-toggle.py",
         "exec-on-event": "false",
-        "on-click": "vrr-toggle.py -t 1; pkill -SIGRTMIN+10 waybar",
-        "on-click-right": "vrr-toggle.py -t 0; pkill -SIGRTMIN+10 waybar",
+        "on-click": "vrr-toggle.py -t; pkill -SIGRTMIN+10 waybar",
         "interval": "once",
         "signal": 10,
         "return-type": "json"

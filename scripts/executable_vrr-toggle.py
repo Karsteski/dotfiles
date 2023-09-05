@@ -5,9 +5,9 @@ import sys
 import argparse
 import subprocess
 import json
-from typing import Optional
 
-def parseArgument() -> Optional[bool]:
+
+def parseArgument() -> bool:
     """
     Get the argument (or lack thereof) passed by the user
     """
@@ -19,14 +19,14 @@ def parseArgument() -> Optional[bool]:
         description=description,
         formatter_class=argparse.RawTextHelpFormatter)
 
-    parser.add_argument("-t", "--toggle", type=int, default=None, required=False,
-        choices=[0, 1],
-        help="Select whether to use VRR")
+    parser.add_argument("-t", "--toggle", action="store_true", required=False,
+        help="Toggle Variable Refresh Rate")
 
     arguments = parser.parse_args()
-    arg: Optional[bool] = arguments.toggle
+    arg: bool = arguments.toggle
 
     return arg
+
 
 def getVRRStatus() -> bool:
     """
@@ -54,26 +54,29 @@ def toggleVRR(flag: bool) -> None:
     else:
         os.system("swaymsg 'output DP-1 adaptive_sync off'")
 
-def printJSON(use_VRR: bool) -> None:
+def printJSON(using_VRR: bool) -> None:
     """
     For use by programs for Sway such as Waybar
     """
 
-    if use_VRR:
+    if using_VRR:
         print('{"text": "󰍹", "tooltip": "VRR Enabled", "class": "enabled"}')
     else:
         print('{"text": "󰶐", "tooltip": "VRR Disabled", "class": "disabled"}')
 
 
 if __name__ == "__main__":
-    arg: Optional[bool] =  parseArgument()
+    arg: bool =  parseArgument()
 
     # If no argument provided, just print the last setting used
-    if arg is None:
+    if arg is False:
         printJSON(getVRRStatus())
         sys.exit()
     else:
-        toggleVRR(arg)
+        current_setting = getVRRStatus()
+
+        new_setting = not current_setting
+        toggleVRR(new_setting)
 
     # Echo the flag so that a program like Waybar knows which option was selected
     printJSON(arg)
