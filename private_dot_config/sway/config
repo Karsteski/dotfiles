@@ -3,15 +3,15 @@
 #-----------#
 
 # Colours
-set $rosewater #f5e0dc
-set $mauve     #cba6f7
+set $rosewater #F5E0DC
+set $mauve     #CBA6F7
 set $red       #622025
-set $text      #cdd6f4
-set $base      #1e1e2e
+set $text      #cDD6F4
+set $base      #1E1E2E
 set $mantle    #181825
 
-set $dark_purple      #1a1a26
-set $highlight_purple #6d066f
+set $dark_purple      #1A1A26
+set $highlight_purple #6D066F
 
 # target                 title         bg    text   indicator  border
 client.focused           $dark_purple  $base $text  $mantle    $highlight_purple
