@@ -45,10 +45,10 @@
         "return-type": "json"
     },
         "custom/weather": {
-        "format": "{}",
+        "format": "{}°",
         "tooltip": true,
-        "interval": 1800,
-        "exec": "waybar-weather.py",
+        "interval": 3600,
+        "exec": "wttrbar --location 'Waterloo+Ontario' --date-format '%d/%m/%Y'",
         "return-type": "json"
     },
     "idle_inhibitor": {
@@ -64,7 +64,7 @@
     },
     "clock": {
         "interval": 1,
-        "format": "{:%I:%M %p  %A %d %b}",
+        "format": "{:%I:%M%p  %A %d %b}",
         "tooltip": true,
         "tooltip-format": "{:%A, %d %B %Y}\n<tt>{calendar}</tt>"
     },

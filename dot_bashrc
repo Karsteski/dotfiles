@@ -33,3 +33,7 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 unset rc
+
+
+
+. ~/.fancy-git/prompt.sh
