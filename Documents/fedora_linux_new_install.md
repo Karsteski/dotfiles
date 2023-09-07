@@ -11,6 +11,10 @@
 ## Sway
 - .desktop files are stored in "~/.local/share/applications" by default
 
+## Hardware decode AMD-GPU:
+
+- Follow the instructions this [RPM Fusion page.](https://rpmfusion.org/Howto/Multimedia)
+
 ## KDE Connect
 - Had to open ports for firewalld: [KDE Connect - Troubleshooting](https://userbase.kde.org/KDEConnect#Troubleshooting)
 

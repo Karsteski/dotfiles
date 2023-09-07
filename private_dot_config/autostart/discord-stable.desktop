@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/lib64/discord/Discord
+Exec=flatpak run com.discordapp.Discord
 Hidden=false
 NoDisplay=false
 Name=Discord

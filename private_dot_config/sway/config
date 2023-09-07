@@ -48,7 +48,7 @@ set $power_menu $rofi_cmd -show power-menu -modi \
     "power-menu:rofi-power-menu --choices=shutdown/reboot/logout"
 
 # File manager
-set $file_manager nemo
+set $file_manager foot nnn
 #-----------------------------------------------------------------------------------#
 
 
