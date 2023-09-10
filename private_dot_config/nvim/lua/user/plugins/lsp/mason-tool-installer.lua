@@ -23,6 +23,7 @@ mason_tool_installer.setup({
 		-- Linters
 		"eslint_d",
         "pylint",
+        "markdownlint",
 
 		-- Debuggers
 		"codelldb",
