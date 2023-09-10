@@ -44,7 +44,7 @@ local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()
 clangd_capabilities.offsetEncoding = { "utf-16" }
 
 for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-	if server == "sumneko_lua" then
+	if server == "lua_ls" then
 		lspconfig[server].setup({
 			settings = {
 				Lua = {
