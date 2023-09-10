@@ -111,6 +111,14 @@ require("lazy").setup({
         dependencies = "neovim/nvim-lspconfig"
     },
 
+    {
+        "iamcco/markdown-preview.nvim",
+        build = function()
+                    vim.fn["mkdp#util#install"]()
+                end,
+        ft = "markdown", -- Lazy load on filetype
+    },
+
     -- ChatGPT.nvim -----------------------------------------------------
     {
         "jackMort/ChatGPT.nvim",
