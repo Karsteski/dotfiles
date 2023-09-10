@@ -1,6 +1,6 @@
 # Karsteski's Neovim Configuration
 
-![Neovim Screenshot](resources/nvim-screenshot.png)
+![Neovim Screenshot](resources/neovim-screenshot.png)
 
 ## Plugins
 
@@ -19,7 +19,6 @@
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                               -- Git decorations for Neovim
 - [project.nvim](https://github.com/ahmedkhalf/project.nvim)                                -- Neovim project management
 - [Godbolt.nvim](https://github.com/p00f/godbolt.nvim)                                      -- Display assembly for the current buffer or visual selection
-- [Alpha.nvim](https://github.com/goolord/alpha-nvim)                                       -- Neovim Greeter
 - [Neovim Session Manager](https://github.com/Shatur/neovim-session-manager)                -- Manage sessions in Neovim 
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                            -- Snippet Engine
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                      -- Snippets collection
