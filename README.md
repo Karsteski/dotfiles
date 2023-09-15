@@ -1,9 +1,9 @@
 <h2 align="center">
-	<img src="resources/my_avatar.png" width="100" alt="Karsteski Logo"/> <br/>
+	<img src="Pictures/chezmoi_pictures/my_avatar.png" width="100" alt="Karsteski Logo"/> <br/>
     : Sway Fedora Linux Dotfiles :
 </h3>
 
-![Sway Fedora Desktop](./resources/sway-fedora-desktop-wallpaper.png "Sway Fedora Desktop Screenshot")
+![Sway Fedora Desktop](Pictures/chezmoi_pictures/sway-fedora-desktop-wallpaper.png "Sway Fedora Desktop Screenshot")
 
 <h3 style="text-align: center;"> 
     💾 Configuration 
