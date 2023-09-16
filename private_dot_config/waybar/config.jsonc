@@ -9,7 +9,7 @@
     "modules-center": ["custom/weather","clock"],
     "modules-right": ["custom/vrr_toggle", "custom/dunst",
         "idle_inhibitor", "pulseaudio", "cpu", "memory",
-        "temperature", "battery", "battery#bat2", "tray"],
+        "temperature", "battery", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "format": "{name}: {icon}",

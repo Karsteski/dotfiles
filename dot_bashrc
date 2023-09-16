@@ -36,4 +36,6 @@ unset rc
 
 
 
+
+
 . ~/.fancy-git/prompt.sh

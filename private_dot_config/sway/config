@@ -361,6 +361,9 @@ for_window [app_id="lxqt-policykit-agent"] {
 #----------#
 include 'desktop-displays.conf'
 include 'desktop-peripherals.conf'
+
+include 'laptop-display.conf'
+include 'laptop-peripherals.conf'
 # --------------------------------
 
 
