@@ -186,8 +186,6 @@ ON_ATTACH = function(client, bufnr)
 end
 
 -- Toggleterm ----------------------------------------------
-local terminal = require("toggleterm.terminal").Terminal
-
 keymap("n", "<leader>t", ":ToggleTerm direction=horizontal <CR>", options)
 keymap("n", "<leader><S-t>", ":ToggleTerm direction=float <CR>", options)
 
