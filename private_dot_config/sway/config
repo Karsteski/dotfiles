@@ -68,6 +68,16 @@ gaps inner 10
 # Specific program behaviour
 for_window [class="vlc"] floating enable
 
+## Because opening Godot Engine windows tiled is annoying
+for_window [instance="Godot_Engine"] {
+    floating enable
+    resize set 800 600
+}
+for_window [class="Godot"] {
+    floating enable
+    resize set 800 600
+}
+
 # Font
 # font JetBrainsMonoNerdFont-Bold 12
 font Monocraft Nerd Font 12
